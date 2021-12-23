@@ -12,5 +12,18 @@
   "browser_action": {
     "default_title": "BunnyPrice",
     "default_popup": "src/page/popup.html"
-  }
+  },
+
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": ["src/background/jquery.slim.min.js", "src/background/ebayShipping.js"]
+  }],
+
+  "background": {
+    "scripts": []
+  },
+
+  "permissions": [
+    "storage"
+  ]
 }
