@@ -1,0 +1,30 @@
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  height: 300px;
+  width: 300px;
+  background: pink;
+  color: white;
+
+  padding: 0;
+  margin: 0;
+}
+
+.heading {
+  height: 40px;
+  line-height: 40px;
+  background: rgb(255, 166, 181);
+  border-bottom: white;
+  text-align: center;
+  user-select: none;
+}
+
+.heading-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  font-weight: bold;
+}
+
+.popup-body {
+  margin: 10px;
+}
