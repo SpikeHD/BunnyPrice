@@ -1,4 +1,4 @@
-if (document.baseURI.match(/https:\/\/www\.ebay\./).length > 0) {
+if (document.baseURI?.match(/https:\/\/www\.ebay\./)?.length > 0) {
   // Sometimes the lists are different. Beats me as to why
   var list = $('#ListViewInner').length > 0 ? $('#ListViewInner') : $('.srp-results')
 

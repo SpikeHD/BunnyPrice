@@ -15,9 +15,14 @@
   },
 
   "content_scripts": [{
-    "matches": ["*://*/*"],
-    "js": ["src/background/jquery.slim.min.js", "src/background/ebayShipping.js"]
-  }],
+      "matches": ["*://*/*"],
+      "js": [
+        "src/background/jquery.slim.min.js",
+        "src/background/ebayShipping.js",
+        "src/background/amazonPriceConvert.js"
+      ]
+    }
+  ],
 
   "background": {
     "scripts": []
