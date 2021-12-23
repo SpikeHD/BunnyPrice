@@ -1,8 +1,8 @@
 body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  height: 300px;
-  width: 300px;
-  background: pink;
+  height: 400px;
+  width: 400px;
+  background: rgb(255, 166, 181);
   color: white;
 
   padding: 0;
@@ -12,8 +12,8 @@ body {
 .heading {
   height: 40px;
   line-height: 40px;
-  background: rgb(255, 166, 181);
-  border-bottom: white;
+  background: rgb(255, 140, 159);
+  border-bottom: 2px solid pink;
   text-align: center;
   user-select: none;
 }
@@ -26,5 +26,23 @@ body {
 }
 
 .popup-body {
-  margin: 10px;
+  margin: 12px;
+}
+
+.settings-item {
+  display: block;
+}
+
+.settings-item-label {
+  display: inline;
+  width: 50%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.settings-item-input {
+  display: inline;
+  text-align: right;
+  float: right;
+  vertical-align: middle;
 }
