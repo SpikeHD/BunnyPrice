@@ -38,7 +38,7 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
     return p
   }
 
-  localExhangeRate('eur').then(exchange => {
+  localExhangeRate('gbp').then(exchange => {
     items.each((i, val) => {
       const priceObj = $(val).find('.a-price-whole').first()
       const price = getPrice(priceObj)

@@ -1,7 +1,7 @@
 body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   height: 400px;
-  width: 400px;
+  width: 500px;
   background: rgb(255, 166, 181);
   color: white;
 
@@ -30,7 +30,9 @@ body {
 }
 
 .settings-item {
+  padding: 4px;
   display: block;
+  border-bottom:2px solid pink;
 }
 
 .settings-item-label {
@@ -45,6 +47,11 @@ body {
   text-align: right;
   float: right;
   vertical-align: middle;
+}
+
+#cur-refresh-val {
+  width: 30px;
+  display: inline;
 }
 
 #currency {
