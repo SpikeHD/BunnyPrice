@@ -6,7 +6,6 @@
   "description": "Simple extension with misc. price tools",
 
   "icons": {
-    "48": "icons/border-48.png"
   },
 
   "browser_action": {
