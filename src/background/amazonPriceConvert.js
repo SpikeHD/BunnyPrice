@@ -11,11 +11,34 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
 
   // TODO we will have a mapping of what currency each TLD uses. For now lets assume JP for amazon.jp
   function getPrice(val) {
-    const price = $(val).text().trim()
-    return price.replace(/^\D+/g, '').replace(',', '')
+    let p = $(val).text().trim()
+    p = '' + p
+    let currencySymbol = p.replace(/[,.]+/g, '').replace(/\d/g, '')
+    if (currencySymbol) p = p.replace(currencySymbol, '')
+  
+    if (!p.includes('.') && !p.includes(',')) {
+      p += '.00'
+    }
+  
+    // Strip symbols from number
+    if (p.indexOf('.') > p.indexOf(',')) {
+      const cents = p.split('.')[1]
+      const dollars = p.split(`.${cents}`)[0].split(',').join('')
+  
+      p = `${dollars}.${cents}`
+    } else {
+      const cents = p.split(',')[1]
+      const dollars = p.split(`,${cents}`)[0].split('.').join('')
+  
+      p = `${dollars}.${cents}`
+    }
+  
+    p = parseFloat(p).toFixed(2)
+  
+    return p
   }
 
-  localExhangeRate('jpy').then(exchange => {
+  localExhangeRate('eur').then(exchange => {
     items.each((i, val) => {
       const priceObj = $(val).find('.a-price-whole').first()
       const price = getPrice(priceObj)

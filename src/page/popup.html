@@ -3,6 +3,7 @@
 <html>
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <script src="js/options.js"></script>
+  <script src="js/exchangeRate.js"></script>
 </html>
 
 <body>
@@ -20,6 +21,18 @@
             <span class="mark"></span>
           </label>
         </div>
+      </div>
+
+      <div class="settings-item">
+        <span class="settings-item-label">Amazon Conversion Currency</span>
+        <div class="settings-item-input">
+          <input type="text" id="currency">
+        </div>
+      </div>
+
+      <div>
+        <button id="cur-refresh">Refresh Currency Data For: </button>
+        <input type="text" id="cur-refresh-val">
       </div>
     </div>
   </div>

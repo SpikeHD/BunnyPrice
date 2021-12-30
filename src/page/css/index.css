@@ -47,4 +47,11 @@ body {
   vertical-align: middle;
 }
 
-/* Create custom checkbox */
+#currency {
+  width: 26px;
+  display: inline;
+}
+
+#output {
+  width: 80%;
+}
