@@ -1,4 +1,4 @@
-function localExhangeRate(cur) {
+function localExchangeRate(cur) {
   return new Promise((resolve) => {
     chrome.storage.local.get([`${cur}Exchange`], (res) => {
       resolve(res[`${cur}Exchange`] || 1)
@@ -16,36 +16,34 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
     let currencySymbol = p.replace(/[,.]+/g, '').replace(/\d/g, '')
     if (currencySymbol) p = p.replace(currencySymbol, '')
   
-    if (!p.includes('.') && !p.includes(',')) {
-      p += '.00'
+    let result = p.replace(/[^0-9]/g, '');
+    if (/[,\.]\d{2}$/.test(p)) {
+        result = result.replace(/(\d{2})$/, '.$1');
     }
   
-    // Strip symbols from number
-    if (p.indexOf('.') > p.indexOf(',')) {
-      const cents = p.split('.')[1]
-      const dollars = p.split(`.${cents}`)[0].split(',').join('')
-  
-      p = `${dollars}.${cents}`
-    } else {
-      const cents = p.split(',')[1]
-      const dollars = p.split(`,${cents}`)[0].split('.').join('')
-  
-      p = `${dollars}.${cents}`
-    }
-  
-    p = parseFloat(p).toFixed(2)
-  
-    return p
+    return result
   }
 
-  localExhangeRate('gbp').then(exchange => {
-    items.each((i, val) => {
-      const priceObj = $(val).find('.a-price-whole').first()
-      const price = getPrice(priceObj)
-  
-      const converted = Number(Number(price) / Number(exchange)).toFixed(2)
+  // Find what currency it needs to be converted from
+  chrome.storage.local.get(['countryCurrencies'], (result) => {
+    if (!result?.countryCurrencies) return;
+    const curs = result.countryCurrencies
+    const country = document.baseURI.split('amazon.')[1].split('/')[0]
+    const currency = curs[country]
 
-      priceObj.text(`$${converted.toLocaleString()}`)
+    // If we don't have a currency for this country, return
+    if (!currency) return;
+
+    // Grab the exchange rate from local storage
+    localExchangeRate(currency).then((exchange) => {
+      items.each((i, val) => {
+        const priceObj = $(val).find('.a-price-whole').first()
+        const price = getPrice(priceObj)
+    
+        const converted = Number(Number(exchange) / Number(price)).toFixed(2)
+  
+        priceObj.text(`$${converted.toLocaleString()}`)
+      })
     })
-  })
+  });
 }
