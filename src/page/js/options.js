@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const out = document.getElementById('output');
+  const out = document.getElementById('output')
 
   document.getElementById('ebay-shipping').addEventListener('change', (evt) => {
-    const ebayOn = evt.target.checked;
-    out.innerHTML = ebayOn;
-  });
+    const ebayOn = evt.target.checked
+    out.innerHTML = ebayOn
+  })
 
   // default amazon country-specific currencies
   const currencies = {
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!result?.countryCurrencies) {
       chrome.storage.local.set({ countryCurrencies: currencies })
     }
-  });
-});
+  })
+})
 
 // chrome.storage.local.get(['key'], (results) => {
 //   document.getElementById('btn').innerHTML = results.key;

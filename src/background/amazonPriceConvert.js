@@ -14,9 +14,7 @@ function formatNumber(number) {
   ) {
     return sanitizedNumber.replace(/[.,]/g, '')
   }
-  return sanitizedNumber.replace(/,/g, '');
-
-  //return sanitizedNumber.replace(/,/g, '.').replace(REGEX_PERIODS_EXCEPT_LAST, '')
+  return sanitizedNumber.replace(/,/g, '')
 }
 
 function localExchangeRate(cur) {
@@ -42,13 +40,13 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
 
   // Find what currency it needs to be converted from
   chrome.storage.local.get(['countryCurrencies'], (result) => {
-    if (!result?.countryCurrencies) return;
+    if (!result?.countryCurrencies) return
     const curs = result.countryCurrencies
     const country = document.baseURI.split('amazon.')[1].split('/')[0]
     const currency = curs[country]
 
     // If we don't have a currency for this country, return
-    if (!currency) return;
+    if (!currency) return
 
     // Grab the exchange rate from local storage
     localExchangeRate(currency).then((exchange) => {
@@ -67,5 +65,5 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
         priceObj.text(`$${converted.toLocaleString()}`)
       })
     })
-  });
+  })
 }
