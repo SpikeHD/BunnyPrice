@@ -76,3 +76,7 @@ input[type="text"] {
 #cur-list {
   list-style: none;
 }
+
+.cur-item {
+  cursor: pointer;
+}

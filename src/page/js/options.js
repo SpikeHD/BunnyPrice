@@ -39,8 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
     .map((val) => val.toUpperCase())
 
   filteredCurs.forEach((val) => {
-    curList.innerHTML += '<li>' + val + '</li>'
+    curList.innerHTML += '<li class="cur-item">' + val + '</li>'
   })
+
+
+  // Make list items clickable
+  const listItems = document.getElementsByClassName('cur-item')
+
+  for (let i = 0; i < listItems.length; i++) {
+    const item = listItems.item(i)
+    console.log(item)
+    item.addEventListener('click', (evt) => {
+      const val = evt.target.innerHTML
+      document.getElementById('cur-refresh-val').value = val
+    })
+  }
 })
 
 function listSearch(input) {
