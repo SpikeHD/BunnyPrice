@@ -35,13 +35,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('currency').value = res
   })
 
-  document.getElementById('cur-refresh').addEventListener('click', () => {
-    const val = document.getElementById('cur-refresh-val').value
+  document.getElementById('cur-refresh').addEventListener('click', (elm) => {
+    // Spin that bitch
+    elm.target.style.animation = 'spin 1s ease-in-out'
+
+    setTimeout(() => elm.target.style.animation = 'none', 2000)
+
+    let val = document.getElementById('cur-refresh-val').value
     if (!val) return
 
     chrome.storage.local.get(['baseCurrency'], (result) => {
       if (!result?.baseCurrency) return
       grabExchangeRate(result.baseCurrency, val).then((rate) => {
+        val = val.toLowerCase()
         chrome.storage.local.set({ [`${val}Exchange`]: rate })
       })
     })

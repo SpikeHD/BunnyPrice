@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   for (let i = 0; i < listItems.length; i++) {
     const item = listItems.item(i)
-    console.log(item)
     item.addEventListener('click', (evt) => {
       const val = evt.target.innerHTML
       document.getElementById('cur-refresh-val').value = val

@@ -31,6 +31,7 @@ body {
 
 .settings-item {
   padding: 4px;
+  margin: 10px;
   display: block;
   border-bottom:2px solid pink;
 }
@@ -52,6 +53,11 @@ body {
 #cur-refresh-val {
   width: 30px;
   display: inline;
+}
+
+#cur-refresh {
+  width: 18px;
+  vertical-align: middle;
 }
 
 #currency {
@@ -79,4 +85,15 @@ input[type="text"] {
 
 .cur-item {
   cursor: pointer;
+}
+
+/* Anim */
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
