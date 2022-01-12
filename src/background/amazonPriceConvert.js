@@ -1,6 +1,5 @@
 const REGEX_UNWANTED_CHARACTERS = /[^\d\-.,]/g
 const REGEX_DASHES_EXCEPT_BEGINNING = /(?!^)-/g
-const REGEX_PERIODS_EXCEPT_LAST = /\.(?=.*\.)/g
 
 function formatNumber(number) {
   const sanitizedNumber = number
@@ -25,18 +24,17 @@ function localExchangeRate(cur) {
   })
 }
 
+function getPrice(val) {
+  let p = $(val).text().trim()
+  p = '' + p
+  let currencySymbol = p.replace(/[,.]+/g, '').replace(/\d/g, '')
+  if (currencySymbol) p = p.replace(currencySymbol, '')
+
+  return parseFloat(formatNumber(p))
+}
+
 if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
   const items = $('.s-card-container').length > 0 ? $('.s-card-container') : $('.s-result-item')
-
-  // TODO we will have a mapping of what currency each TLD uses. For now lets assume JP for amazon.jp
-  function getPrice(val) {
-    let p = $(val).text().trim()
-    p = '' + p
-    let currencySymbol = p.replace(/[,.]+/g, '').replace(/\d/g, '')
-    if (currencySymbol) p = p.replace(currencySymbol, '')
-  
-    return parseFloat(formatNumber(p))
-  }
 
   // Find what currency it needs to be converted from
   chrome.storage.local.get(['countryCurrencies'], (result) => {

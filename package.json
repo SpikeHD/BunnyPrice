@@ -1,0 +1,11 @@
+{
+  "name": "BunnyPrice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SpikeHD/BunnyPrice.git",
+  "author": "SpikeHD <spikegdofficial@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  }
+}

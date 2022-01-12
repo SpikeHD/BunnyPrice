@@ -1,16 +1,17 @@
+function getShipping(val) {
+  var shipping = $(val).find('.lvshipping').text().trim() || $(val).find('.s-item__shipping').text().trim()
+  return shipping.replace(/^\D+/g, '').replace(',', '')
+}
+
+function getPrice(val) {
+  var price = $(val).find('.lvprice').text().trim() || $(val).find('.s-item__price').text().trim()
+  return price.replace(/^\D+/g, '').replace(',', '')
+}
+
+
 if (document.baseURI?.match(/https:\/\/www\.ebay\./)?.length > 0) {
   // Sometimes the lists are different. Beats me as to why
   var list = $('#ListViewInner').length > 0 ? $('#ListViewInner') : $('.srp-results')
-
-  function getShipping(val) {
-    var shipping = $(val).find('.lvshipping').text().trim() || $(val).find('.s-item__shipping').text().trim()
-    return shipping.replace(/^\D+/g, '').replace(',', '')
-  }
-
-  function getPrice(val) {
-    var price = $(val).find('.lvprice').text().trim() || $(val).find('.s-item__price').text().trim()
-    return price.replace(/^\D+/g, '').replace(',', '')
-  }
 
   list.children('li').each((i, val) => {
     // Get the objects, there are (from what I've seen) two different possibilities. Maybe there are more, idk

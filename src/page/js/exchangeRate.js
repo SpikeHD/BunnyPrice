@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   function grabExchangeRate(base, convert) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${base}.json`).then((res) => res.json().then((body) => {
         resolve(body[base][convert])
       }))
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('currency').value = res
   })
 
-  document.getElementById('cur-refresh').addEventListener('click', (evt) => {
+  document.getElementById('cur-refresh').addEventListener('click', () => {
     const val = document.getElementById('cur-refresh-val').value
     if (!val) return
 
