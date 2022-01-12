@@ -12,7 +12,6 @@
       <span class="heading-text">BunnyPrice</span>
     </div>
     <div class="popup-body">
-      <div id="output"></div>
 
       <div class="settings-item">
         <span class="settings-item-label">eBay Shipping Combiner</span>
@@ -32,7 +31,10 @@
       </div>
 
       <div class="settings-item">
-        <span class="settings-item-label">Refresh Currency Data For: <input type="text" id="cur-refresh-val"></span>
+        <span class="settings-item-label">
+          Refresh Currency Data For: <input type="text" id="cur-refresh-val">
+          <ul id="cur-list"></ul>
+        </span>
         <div class="settings-item-input">
           <button id="cur-refresh">Refresh!</button>
         </div>

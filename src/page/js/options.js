@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     out.innerHTML = ebayOn
   })
 
+  document.getElementById('cur-refresh-val').addEventListener('keyup', (evt) => {
+    listSearch(evt.target)
+  })
+
   // default amazon country-specific currencies
   const currencies = {
     'com': 'usd',
@@ -27,7 +31,34 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.storage.local.set({ countryCurrencies: currencies })
     }
   })
+
+  // Show list of supported currencies
+  const curList = document.getElementById('cur-list')
+  const filteredCurs = Object.values(currencies)
+    .filter((val, ind, self) => self.indexOf(val) === ind)
+    .map((val) => val.toUpperCase())
+
+  filteredCurs.forEach((val) => {
+    curList.innerHTML += '<li>' + val + '</li>'
+  })
 })
+
+function listSearch(input) {
+  let list = input.parentNode.getElementsByTagName('ul')[0]
+  if (input.value.length <= 0) {
+    list.style.display = 'none'
+  } else {
+    list.style.display = 'block'
+
+    list.childNodes.forEach((child) => {
+      if (child.innerHTML.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+        child.style.display = 'block'
+      } else {
+        child.style.display = 'none'
+      }
+    })
+  }
+}
 
 // chrome.storage.local.get(['key'], (results) => {
 //   document.getElementById('btn').innerHTML = results.key;
