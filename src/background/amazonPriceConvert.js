@@ -1,3 +1,24 @@
+const REGEX_UNWANTED_CHARACTERS = /[^\d\-.,]/g
+const REGEX_DASHES_EXCEPT_BEGINNING = /(?!^)-/g
+const REGEX_PERIODS_EXCEPT_LAST = /\.(?=.*\.)/g
+
+function formatNumber(number) {
+  const sanitizedNumber = number
+    .replace(REGEX_UNWANTED_CHARACTERS, '')
+    .replace(REGEX_DASHES_EXCEPT_BEGINNING, '')
+
+  // Handle only thousands separator
+  if (
+    ((sanitizedNumber.match(/,/g) ?? []).length >= 2 && !sanitizedNumber.includes('.')) ||
+    ((sanitizedNumber.match(/\./g) ?? []).length >= 2 && !sanitizedNumber.includes(','))
+  ) {
+    return sanitizedNumber.replace(/[.,]/g, '')
+  }
+  return sanitizedNumber.replace(/,/g, '');
+
+  //return sanitizedNumber.replace(/,/g, '.').replace(REGEX_PERIODS_EXCEPT_LAST, '')
+}
+
 function localExchangeRate(cur) {
   return new Promise((resolve) => {
     chrome.storage.local.get([`${cur}Exchange`], (res) => {
@@ -16,12 +37,7 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
     let currencySymbol = p.replace(/[,.]+/g, '').replace(/\d/g, '')
     if (currencySymbol) p = p.replace(currencySymbol, '')
   
-    let result = p.replace(/[^0-9]/g, '');
-    if (/[,\.]\d{2}$/.test(p)) {
-        result = result.replace(/(\d{2})$/, '.$1');
-    }
-  
-    return result
+    return parseFloat(formatNumber(p))
   }
 
   // Find what currency it needs to be converted from
@@ -38,9 +54,15 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
     localExchangeRate(currency).then((exchange) => {
       items.each((i, val) => {
         const priceObj = $(val).find('.a-price-whole').first()
+        const cents = $(val).find('.a-price-fraction').first()
+        const priceSymbol = $(val).find('.a-price-symbol').first()
+
+        // I don't want to bother with the symbols and cents right now
+        cents.remove()
+        priceSymbol.remove()
+
         const price = getPrice(priceObj)
-    
-        const converted = Number(Number(exchange) / Number(price)).toFixed(2)
+        const converted = (parseFloat(price) / parseFloat(exchange)).toFixed(2)
   
         priceObj.text(`$${converted.toLocaleString()}`)
       })
