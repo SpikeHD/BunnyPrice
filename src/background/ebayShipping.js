@@ -23,7 +23,7 @@ chrome.storage.local.get(['ebayEnabled'], (res) => {
   
       // If there is a shipping price (parseFloat returns null if there isn't any float), change it up
       if (shipping) {
-        $(shipObj).text(`Shipping was: $${shipping}`)
+        $(shipObj).text(`Shipping was: $${shipping.toFixed(2)}`)
         $(priceObj).text(`${currency} $${(Math.round((price+shipping + Number.EPSILON) * 100)/100).toFixed(2)}`)
       }
     })
