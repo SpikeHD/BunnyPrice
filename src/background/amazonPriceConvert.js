@@ -33,9 +33,7 @@ function getPrice(val) {
   return parseFloat(formatNumber(p))
 }
 
-chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
-  if (!result?.amazonEnabled) return
-  
+function priceReplace(result) {
   if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
     const items = $('.s-card-container').length > 0 ? $('.s-card-container') : $('.s-result-item')
 
@@ -65,4 +63,21 @@ chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
       })
     })
   }
+}
+
+chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
+  if (!result?.amazonEnabled) return
+  
+  priceReplace(result)
+
+  let lastURL = window.location.href
+
+  console.log(lastURL)
+
+  setInterval(() => {
+    if (window.location.href === lastURL) return
+
+    lastURL = window.location.href
+    priceReplace(result)
+  }, 1000)
 })
