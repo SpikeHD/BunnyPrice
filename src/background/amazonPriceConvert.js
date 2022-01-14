@@ -33,11 +33,13 @@ function getPrice(val) {
   return parseFloat(formatNumber(p))
 }
 
-if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
-  const items = $('.s-card-container').length > 0 ? $('.s-card-container') : $('.s-result-item')
 
-  // Find what currency it needs to be converted from
-  chrome.storage.local.get(['countryCurrencies'], (result) => {
+chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
+  if (!result?.amazonEnabled) return
+  
+  if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
+    const items = $('.s-card-container').length > 0 ? $('.s-card-container') : $('.s-result-item')
+
     if (!result?.countryCurrencies) return
     const curs = result.countryCurrencies
     const country = document.baseURI.split('amazon.')[1].split('/')[0]
@@ -63,5 +65,5 @@ if (document.baseURI?.match(/https:\/\/www\.amazon\./)?.length > 0) {
         priceObj.text(`$${converted.toLocaleString()}`)
       })
     })
-  })
-}
+  }
+})
