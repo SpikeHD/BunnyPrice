@@ -33,7 +33,6 @@ function getPrice(val) {
   return parseFloat(formatNumber(p))
 }
 
-
 chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
   if (!result?.amazonEnabled) return
   

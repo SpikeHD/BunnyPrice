@@ -12,42 +12,63 @@
       <span class="heading-text">BunnyPrice</span>
     </div>
     <div class="popup-body">
+      <table>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
 
-      <div class="settings-item">
-        <span class="settings-item-label">eBay Shipping Combiner</span>
-        <div class="settings-item-input">
-          <label class="custom-check" id="ebay-shipping">
-            <input type="checkbox" id="">
-            <span class="mark"></span>
-          </label>
-        </div>
-      </div>
-      
-      <div class="settings-item">
-        <span class="settings-item-label">Amazon Price Converter</span>
-        <div class="settings-item-input">
-          <label class="custom-check" id="amazon-convert">
-            <input type="checkbox" id="">
-            <span class="mark"></span>
-          </label>
-        </div>
-      </div>
+        <!-- eBay enabler -->
+        <tr>
+          <td>
+            <span class="settings-item-label">eBay Shipping Combiner</span>
+          </td>
+          <td>
+            <label class="custom-check" id="ebay-shipping">
+              <input type="checkbox" id="">
+              <span class="mark"></span>
+            </label>
+          </td>
+        </tr>
 
-      <div class="settings-item">
-        <span class="settings-item-label">Amazon Conversion Currency</span>
-        <div class="settings-item-input">
-          <input type="text" id="currency">
-        </div>
-      </div>
+        <!-- Amazon Enabler -->
+        <tr>
+          <td>
+            <span class="settings-item-label">Amazon Price Converter</span>
+          </td>
+          <td>
+            <label class="custom-check" id="amazon-convert">
+              <input type="checkbox" id="">
+              <span class="mark"></span>
+            </label>
+          </td>
+        </tr>
 
-      <div class="settings-item">
-        <span class="settings-item-label">
-          Refresh Currency Data For: <input type="text" id="cur-refresh-val"> <image src="images/refresh-2-24.png" id="cur-refresh">
-          <ul id="cur-list"></ul>
-        </span>
-      </div>
-      <div>
-      </div>
+        <!-- Amazon Currency Setter -->
+        <tr>
+          <td>
+            <span class="settings-item-label">Amazon Conversion Currency</span>
+          </td>
+          <td>
+            <div class="settings-item-input">
+              <input type="text" id="currency"> <image src="images/check-mark-24.png" id="cur-conv-refresh" class="confirm">
+            </div>
+          </td>
+        </tr>
+
+        <!-- Amazon Currency Refresher -->
+        <tr id="cur-refresh-container">
+          <td>
+            <span class="settings-item-label">
+              Refresh Currency Data For:
+            </span>
+          </td>
+          <td>
+            <input type="text" id="cur-refresh-val"> <image src="images/refresh-2-24.png" id="cur-refresh" class="confirm">
+            <ul id="cur-list"></ul>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </body>
