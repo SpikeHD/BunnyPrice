@@ -2,10 +2,10 @@
   "manifest_version": 2,
   "name": "BunnyPrice",
   "version": "1.0",
-
   "description": "Simple extension with misc. price tools",
 
   "icons": {
+    "72": "icons/bunnyprice.png"
   },
 
   "browser_action": {
