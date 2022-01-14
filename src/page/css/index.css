@@ -1,5 +1,7 @@
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+
   height: 400px;
   width: 500px;
   background: rgb(255, 166, 181);
@@ -9,9 +11,23 @@ body {
   margin: 0;
 }
 
+a {
+  color: white;
+  cursor: pointer;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 table {
   margin:auto;
-  width: 75%;
+  width: 85%;
 }
 
 table .settings-item-label {
@@ -23,7 +39,7 @@ table .settings-item-label {
   line-height: 40px;
   background: rgb(255, 140, 159);
   border-bottom: 2px solid pink;
-  text-align: center;
+  text-align: left;
   user-select: none;
 }
 
@@ -31,11 +47,34 @@ table .settings-item-label {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
-  font-weight: bold;
+  font-weight: 700;
+  padding: 10px
+}
+
+#icon {
+  width: 28px;
+  vertical-align: middle;
+  float: right;
+
+  margin: auto;
+  padding: 6px;
+  padding-right: 20px;
 }
 
 .popup-body {
   margin: 12px;
+}
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+
+  font-size: 10px;
+  padding: 10px;
 }
 
 .confirm {
@@ -72,12 +111,10 @@ table .settings-item-label {
 */
 
 #cur-refresh-val {
-  width: 30px;
   display: inline;
 }
 
 #currency {
-  width: 26px;
   display: inline;
 }
 
@@ -93,11 +130,20 @@ input[type="text"] {
   border-radius: 3px;
   color: white;
   padding: 6px;
+
+  width: 40px;
+}
+
+input[type="text"]::placeholder {
+  color:rgb(255, 166, 181)
 }
 
 #cur-list {
+  /* Displayed with JS */
+  display: none;
+
   list-style: none;
-  width: 40px;
+  width: 50px;
   position: absolute;
 
   margin: 0;

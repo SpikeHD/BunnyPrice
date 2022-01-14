@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Show list of supported currencies
+  const curList = document.getElementById('cur-list')
 
   // Set default state of checkboxes
   chrome.storage.local.get(['ebayEnabled', 'amazonEnabled'], (res) => {
@@ -30,6 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
     listSearch(evt.target)
   })
 
+  // Show list when focused
+  document.getElementById('cur-refresh-val').addEventListener('focus', (evt) => {
+    curList.style.display = 'block'
+  })
+
+  // Hide list when not focused
+  document.getElementById('cur-refresh-val').addEventListener('blur', (evt) => {
+    // Stinky hack to allow clicking the list items before it disappears
+    setTimeout(() => {
+      curList.style.display = 'none'
+    }, 100)
+  })
+
+
   // default amazon country-specific currencies
   const currencies = {
     'com': 'usd',
@@ -53,8 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
-  // Show list of supported currencies
-  const curList = document.getElementById('cur-list')
   const filteredCurs = Object.values(currencies)
     .filter((val, ind, self) => self.indexOf(val) === ind)
     .map((val) => val.toUpperCase())
@@ -79,7 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function listSearch(input) {
   let list = input.parentNode.getElementsByTagName('ul')[0]
   if (input.value.length <= 0) {
-    list.style.display = 'none'
+    list.childNodes.forEach((child) => {
+      child.style.display = 'block'
+    })
   } else {
     list.style.display = 'block'
 

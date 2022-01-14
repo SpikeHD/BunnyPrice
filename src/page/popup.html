@@ -4,12 +4,17 @@
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <script src="js/options.js"></script>
   <script src="js/exchangeRate.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </html>
 
 <body>
   <div class="wrapper">
     <div class="heading">
       <span class="heading-text">BunnyPrice</span>
+      <image src="images/rabbit.png" id="icon">
     </div>
     <div class="popup-body">
       <table>
@@ -64,11 +69,15 @@
             </span>
           </td>
           <td>
-            <input type="text" id="cur-refresh-val"> <image src="images/refresh-2-24.png" id="cur-refresh" class="confirm">
+            <input type="text" id="cur-refresh-val" placeholder="Enter..."> <image src="images/refresh-2-24.png" id="cur-refresh" class="confirm">
             <ul id="cur-list"></ul>
           </td>
         </tr>
       </table>
+    </div>
+
+    <div id="footer">
+      Icon Courtesy of <a>https://www.flaticon.com/authors/torskaya</a>
     </div>
   </div>
 </body>
