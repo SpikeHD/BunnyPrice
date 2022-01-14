@@ -1,11 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const out = document.getElementById('output')
 
-  document.getElementById('ebay-shipping').addEventListener('change', (evt) => {
-    const ebayOn = evt.target.checked
-    out.innerHTML = ebayOn
+  // Set default state of checkboxes
+  chrome.storage.local.get(['ebayEnabled', 'amazonEnabled'], (res) => {
+    if (res?.ebayEnabled) {
+      const checkbox = document.getElementById('ebay-shipping')
+      checkbox.click()
+    }
+
+    if (res?.amazonEnabled) {
+      const checkbox = document.getElementById('amazon-convert')
+      checkbox.click()
+    }
   })
 
+  // Turn ebay shipping combiner on and off
+  document.getElementById('ebay-shipping').addEventListener('change', (evt) => {
+    const ebayOn = evt.target.checked
+    chrome.storage.local.set({ ebayEnabled: ebayOn })
+  })
+
+    // Turn amazon price converter on and off
+    document.getElementById('amazon-convert').addEventListener('change', (evt) => {
+      const amazonOn = evt.target.checked
+      chrome.storage.local.set({ amazonEnabled: amazonOn })
+    })
+
+  // Search through currency list
   document.getElementById('cur-refresh-val').addEventListener('keyup', (evt) => {
     listSearch(evt.target)
   })
@@ -26,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'in': 'inr',
   }
 
+  // First time check for country currencies
   chrome.storage.local.get(['countryCurrencies'], (result) => {
     if (!result?.countryCurrencies) {
       chrome.storage.local.set({ countryCurrencies: currencies })
