@@ -72,8 +72,6 @@ chrome.storage.local.get(['countryCurrencies', 'amazonEnabled'], (result) => {
 
   let lastURL = window.location.href
 
-  console.log(lastURL)
-
   setInterval(() => {
     if (window.location.href === lastURL) return
 
