@@ -1,6 +1,11 @@
 # BunnyPrice
 Misc. online pricing tools for making browsing shops easier
 
+# Links
+
+* [Chrome](https://chrome.google.com/webstore/detail/bunnyprice/hphigpmmifmfdgkbjedmdgkimpkgbfmi)
+* [FireFox](https://addons.mozilla.org/en-US/firefox/addon/bunnyprice/)
+
 # Installing via Release File
 
 When installing outside of the Chrome Webstore, aka via the `extension.crx` file, follow these simple steps:
